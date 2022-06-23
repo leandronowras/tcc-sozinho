@@ -20,6 +20,7 @@
     "socket.io": "4.1"
   },
   "dependencies": {
+    "busboy": "^0.3.1",
     "pretty-bytes": "5.6"
   }
 }
