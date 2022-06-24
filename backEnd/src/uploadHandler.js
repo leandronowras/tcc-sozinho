@@ -4,16 +4,17 @@ import { pipeline } from 'stream/promises'
 import { logger } from "./logger";
 
 export default class UploadHandler {
-    constructor({ io, socketId, downloadsFolder }) {
+    constructor({ io, socketId, downloadsFolder, messageTimeDelay = 200 }) {
       this.io =  io
       this.socketId =  socketId
       this.downloadsFolder =  downloadsFolder  
       this.ON_UPLOAD_EVENT = 'file-upload'
+      this.messageTimeDelay = messageTimeDelay
     }
 
     // necessario pois o processo eh tao rapido que pode travar o client
     canExecute(lastExecution) {
-
+      return (Date.now() - lastExecution) >= this.messageTimeDelay
     }
 
     handleFileBytes(filename) {
@@ -29,6 +30,7 @@ export default class UploadHandler {
           if(!this.canExecute(this.lastMessageSent)) {
             continue
           }
+          this.lastMessageSent = Date.now()
           this.io.to(this.socketId).emit(this.ON_UPLOAD_EVENT, { processedAlready, filename })
           logger.info(`File [${filename}] got ${processedAlready} bytes to ${this.socketId}`)
         }
