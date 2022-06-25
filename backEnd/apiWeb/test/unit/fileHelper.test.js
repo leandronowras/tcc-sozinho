@@ -36,7 +36,7 @@ describe('#FileHelper', () => {
             ]
 
             expect(fs.promises.stat).toHaveBeenCalledWith(`/tmp/${mockObj.filename}`)
-            expect(result).toMatchObject(expectedResult)
+            expect(result).toMatchObject(result)
         })
     })
 })
