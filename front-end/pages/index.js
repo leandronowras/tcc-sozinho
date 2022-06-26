@@ -12,7 +12,7 @@ export default function Home() {
               <a href='/'>Logo</a>
             </li>
             <li className={styles.login}>
-              <a href='/'>Login</a>
+              <a href='http://localhost:3000/login'>Login</a>
             </li>
           </ul>
         </navbar>
@@ -29,10 +29,10 @@ export default function Home() {
           <div className={styles.register_options}>
             <ul>
               <li>
-                <a href='/'>Cadastra-se <br></br>como professor</a>
+                <a href='http://localhost:3000/cadastroProfessor'>Cadastra-se <br></br>como professor</a>
               </li>
               <li>
-                <a href='/'>Cadastra-se <br></br>como aluno</a>
+                <a href='http://localhost:3000/cadastroAluno'>Cadastra-se <br></br>como aluno</a>
               </li>
             </ul>
           </div>
