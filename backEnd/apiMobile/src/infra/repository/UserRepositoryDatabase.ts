@@ -8,7 +8,7 @@ export default class UserRepositoryDatabase implements UserRepository {
   async cadastrar(user: User): Promise<void> {
     console.log(user)
     const result = await this.mongo.client.db('tcc').collection('documents')
-      .insertOne({user});
+      .insertOne(user);
     console.log('Inserted document =>', result);
   }
 }

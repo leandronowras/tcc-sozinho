@@ -21,7 +21,7 @@ catch (error) {
 }
 app.get('/login', (request, response) => {
     const testLoginInput = {
-        email: 'leandrl', password: '123'
+        email: 'leandro@gmail.com', password: '123'
     };
     const login = new LogarUsuario_1.default(new LoginRepositoryDatabase_1.default(mongo));
     console.log(login.execute(testLoginInput));

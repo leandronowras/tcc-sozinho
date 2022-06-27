@@ -7,7 +7,8 @@ export default class LoginRepositoryDatabase implements LoginRepository {
   async logar(credentials: Login): Promise<void> {
     // fazer query no banco e ver se tem algum match com o input do usuario
     console.log('credentials', credentials)
-    const result = await this.mongo.client.db('tcc').collection('documents').find({}).toArray();
+    const result = await this.mongo.client.db('tcc').collection('documents')
+      .find({email: credentials.email, password: credentials.password}).toArray();
     console.log('result repository database', result)
   }
 }

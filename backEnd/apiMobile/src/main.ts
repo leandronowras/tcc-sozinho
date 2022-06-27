@@ -20,7 +20,7 @@ try {
 
 app.get('/login', (request, response) => {
   const testLoginInput: LogarUsuarioInput = {
-    email: 'leandrl', password: '123'
+    email: 'leandro@gmail.com', password: '123'
   }
 
   const login = new LogarUsuario(new LoginRepositoryDatabase(mongo))
@@ -52,14 +52,7 @@ app.get('/cadastroProfessor', (request, response) => {
 app.listen(5000, () => { console.log('rodando 5000')})
 
 /* 
-
 todo:
 front:
 corrigir o fetch para ser post 
-
-login:
-corrigir rota de get para post em login
-fazer a verificacao no banco de dados
-
-
 */

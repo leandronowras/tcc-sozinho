@@ -17,7 +17,8 @@ class LoginRepositoryDatabase {
         return __awaiter(this, void 0, void 0, function* () {
             // fazer query no banco e ver se tem algum match com o input do usuario
             console.log('credentials', credentials);
-            const result = yield this.mongo.client.db('tcc').collection('documents').find({}).toArray();
+            const result = yield this.mongo.client.db('tcc').collection('documents')
+                .find({ email: credentials.email, password: credentials.password }).toArray();
             console.log('result repository database', result);
         });
     }

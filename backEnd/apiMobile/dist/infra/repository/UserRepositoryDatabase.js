@@ -17,7 +17,7 @@ class UserRepositoryDatabase {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(user);
             const result = yield this.mongo.client.db('tcc').collection('documents')
-                .insertOne({ user });
+                .insertOne(user);
             console.log('Inserted document =>', result);
         });
     }
