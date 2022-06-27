@@ -9,17 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserRepositoryDatabase {
+class LoginRepositoryDatabase {
     constructor(mongo) {
         this.mongo = mongo;
     }
-    cadastrar(user) {
+    logar(credentials) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(user);
-            const result = yield this.mongo.client.db('tcc').collection('documents')
-                .insertOne({ user });
-            console.log('Inserted document =>', result);
+            // fazer query no banco e ver se tem algum match com o input do usuario
+            console.log('credentials', credentials);
+            const result = yield this.mongo.client.db('tcc').collection('documents').find({}).toArray();
+            console.log('result repository database', result);
         });
     }
 }
-exports.default = UserRepositoryDatabase;
+exports.default = LoginRepositoryDatabase;

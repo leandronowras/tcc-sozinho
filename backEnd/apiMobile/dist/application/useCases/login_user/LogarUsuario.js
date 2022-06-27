@@ -8,18 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserRepositoryDatabase {
-    constructor(mongo) {
-        this.mongo = mongo;
+const Login_1 = __importDefault(require("../../../domain/entities/Login"));
+class CadastrarUsuario {
+    constructor(loginRepository) {
+        this.loginRepository = loginRepository;
     }
-    cadastrar(user) {
+    execute(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(user);
-            const result = yield this.mongo.client.db('tcc').collection('documents')
-                .insertOne({ user });
-            console.log('Inserted document =>', result);
+            const login = new Login_1.default(input.email, input.password);
+            this.loginRepository.logar(login);
         });
     }
 }
-exports.default = UserRepositoryDatabase;
+exports.default = CadastrarUsuario;

@@ -39,7 +39,7 @@ export default function Formulario(props) {
                 </div> 
               
                 <div>
-                    <button className={styles.btn}>Cadastrar Professor</button>
+                    <button className={styles.btn}>Cadastrar Aluno</button>
                 </div>
             </div>
         </form>

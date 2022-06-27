@@ -30,7 +30,7 @@ export default function Formulario(props) {
                     <input className={styles.textInput} type='text' placeholder="" required id='senha' ref={passwordInputRef}/>
                 </div> 
                 <div>
-                    <button className={styles.btn}>Cadastrar Estabelecimento</button>
+                    <button className={styles.btn}>Login</button>
                 </div>
             </div>
         </form>
