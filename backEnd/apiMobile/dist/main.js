@@ -19,6 +19,14 @@ try {
 catch (error) {
     console.log('conexao com o banco de dados falhou');
 }
+app.get('/login', (request, response) => {
+    const testLoginInput = {
+        email: 'leandrl', password: '123'
+    };
+    const login = new LogarUsuario_1.default(new LoginRepositoryDatabase_1.default(mongo));
+    console.log(login.execute(testLoginInput));
+    response.send('usuario cadastrado');
+});
 app.get('/cadastroAluno', (request, response) => {
     const testInput = {
         name: 'leandrl', password: '123', email: 'leandro@gmail.com', role: 'student'
@@ -27,12 +35,12 @@ app.get('/cadastroAluno', (request, response) => {
     console.log(cadastro.execute(testInput));
     response.send('usuario cadastrado');
 });
-app.get('/login', (request, response) => {
-    const testLoginInput = {
-        email: 'leandrl', password: '123'
+app.get('/cadastroProfessor', (request, response) => {
+    const testInput = {
+        name: 'leandrl', password: '123', email: 'leandro@gmail.com', role: 'professor'
     };
-    const login = new LogarUsuario_1.default(new LoginRepositoryDatabase_1.default(mongo));
-    console.log(login.execute(testLoginInput));
+    const cadastro = new CadastrarUsuario_1.default(new UserRepositoryDatabase_1.default(mongo));
+    console.log(cadastro.execute(testInput));
     response.send('usuario cadastrado');
 });
 app.listen(5000, () => { console.log('rodando 5000'); });
