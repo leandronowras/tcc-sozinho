@@ -7,6 +7,7 @@ import Mongo from './infra/database/Mongo'
 import CadastrarUsuarioInput from './application/useCases/cadatro_user/CadastrarUsuarioInput'
 import LogarUsuarioInput from './application/useCases/login_user/LogarUsuarioInput'
 import LoginRepositoryDatabase from './infra/repository/LoginRepositoryDatabase'
+import jwt from 'jsonwebtoken'
 
 const app = express()
 app.use(cors())
@@ -34,8 +35,12 @@ app.get('/cadastroAluno', (request, response) => {
   }
 
   const cadastro = new CadastrarUsuario(new UserRepositoryDatabase(mongo))
+  const token = jwt.sign({ id: testInput.email }, 'secret', {
+    expiresIn: '90d'
+  })
   console.log(cadastro.execute(testInput))
-  response.send('usuario cadastrado')
+  console.log('token', token)
+  response.json({token})
 })
 
 app.get('/cadastroProfessor', (request, response) => {

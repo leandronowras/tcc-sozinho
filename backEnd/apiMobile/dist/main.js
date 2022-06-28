@@ -10,6 +10,7 @@ const LogarUsuario_1 = __importDefault(require("./application/useCases/login_use
 const UserRepositoryDatabase_1 = __importDefault(require("./infra/repository/UserRepositoryDatabase"));
 const Mongo_1 = __importDefault(require("./infra/database/Mongo"));
 const LoginRepositoryDatabase_1 = __importDefault(require("./infra/repository/LoginRepositoryDatabase"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -32,8 +33,12 @@ app.get('/cadastroAluno', (request, response) => {
         name: 'leandrl', password: '123', email: 'leandro@gmail.com', role: 'student'
     };
     const cadastro = new CadastrarUsuario_1.default(new UserRepositoryDatabase_1.default(mongo));
+    const token = jsonwebtoken_1.default.sign({ id: testInput.email }, 'secret', {
+        expiresIn: '90d'
+    });
     console.log(cadastro.execute(testInput));
-    response.send('usuario cadastrado');
+    console.log('token', token);
+    response.json({ token });
 });
 app.get('/cadastroProfessor', (request, response) => {
     const testInput = {
@@ -45,14 +50,7 @@ app.get('/cadastroProfessor', (request, response) => {
 });
 app.listen(5000, () => { console.log('rodando 5000'); });
 /*
-
 todo:
 front:
 corrigir o fetch para ser post
-
-login:
-corrigir rota de get para post em login
-fazer a verificacao no banco de dados
-
-
 */ 
