@@ -49,8 +49,13 @@ app.get('/cadastroProfessor', (request, response) => {
   }
 
   const cadastro = new CadastrarUsuario(new UserRepositoryDatabase(mongo))
+  
+  const token = jwt.sign({ id: testInput.email }, 'secret', {
+    expiresIn: '90d'
+  })
+
   console.log(cadastro.execute(testInput))
-  response.send('usuario cadastrado')
+  response.send({token})
 })
 
 
@@ -58,6 +63,14 @@ app.listen(5000, () => { console.log('rodando 5000')})
 
 /* 
 todo:
-front:
-corrigir o fetch para ser post 
+nao permitir o cadastro de um usuario com um email ja existente
+
+dar um error se o usuario nao for encontrado ( erro ou uma resposta decente )
+
+*/
+
+/* 
+MPV:
+front envia a mensagem: token validado, ir para o dashboard?
+ai sou redirecionado para o dashboar e da pra enviar os arquivos
 */
